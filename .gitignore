@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+automation/output/run.log
+automation/output/launchd.log
+.DS_Store
+.env
