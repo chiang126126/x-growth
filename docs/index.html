@@ -35,9 +35,25 @@
         <div class="day-label">MISSION DAY</div>
         <div class="day-value"><span id="day-current">00</span><span class="day-total">/90</span></div>
       </div>
-      <a id="edit-link" href="#" target="_blank" class="btn-edit">✏️ EDIT DATA</a>
     </div>
   </header>
+
+  <!-- COMMAND BAR · 数据源直达 + AI 复盘 -->
+  <div class="command-bar">
+    <div class="command-bar-label">🎛️ 数据回收</div>
+    <a href="https://analytics.twitter.com/" target="_blank" class="cmd-btn" title="X Analytics 看曝光/互动">
+      <span>📊</span> X ANALYTICS
+    </a>
+    <a href="https://creator.xiaohongshu.com/creator/notemanage" target="_blank" class="cmd-btn" title="小红书创作中心">
+      <span>📕</span> 小红书后台
+    </a>
+    <a id="edit-link" href="#" target="_blank" class="cmd-btn cmd-btn-primary" title="编辑 data.json">
+      <span>✏️</span> EDIT DATA
+    </a>
+    <button id="ai-review-btn" class="cmd-btn cmd-btn-ai" title="生成本周复盘 prompt → 复制 → 打开 Claude">
+      <span>🤖</span> AI 周复盘
+    </button>
+  </div>
 
   <!-- TIER 1 -->
   <section class="tier">
@@ -149,10 +165,32 @@
   </section>
 
   <footer class="footer">
-    X-GROWTH COMMAND CENTER · v3 · 数据源 docs/data.json · 每晚 22:00 ·
+    X-GROWTH COMMAND CENTER · v4 · 数据源 docs/data.json · 每晚 22:00 ·
     <a href="https://github.com/chiang126126/x-growth" target="_blank">GITHUB</a>
   </footer>
 </main>
+
+<!-- Toast 提示 -->
+<div id="toast" class="toast"></div>
+
+<!-- AI 复盘 Prompt 预览 Modal -->
+<div id="prompt-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>🤖 AI 周复盘 Prompt</h3>
+      <button class="modal-close" onclick="closePromptModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <p class="modal-hint">prompt 已生成。点 <strong>复制 + 打开 Claude</strong>，然后粘贴发送。</p>
+      <textarea id="prompt-text" readonly></textarea>
+    </div>
+    <div class="modal-footer">
+      <button class="cmd-btn" onclick="closePromptModal()">取消</button>
+      <button class="cmd-btn cmd-btn-ai" onclick="copyAndOpenClaude()">📋 复制 + 打开 Claude</button>
+    </div>
+  </div>
+</div>
+
 <script src="app.js"></script>
 </body>
 </html>
