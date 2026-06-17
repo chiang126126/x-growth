@@ -1,0 +1,68 @@
+/* X-Growth 看板自定义样式 */
+
+.card {
+  @apply bg-white rounded-xl shadow-sm border border-slate-200 p-4 md:p-5;
+}
+
+.card-title {
+  @apply text-sm font-semibold text-slate-700 mb-3 flex items-center gap-2;
+}
+
+.kpi-card {
+  @apply bg-white rounded-xl shadow-sm border border-slate-200 p-4 flex flex-col;
+}
+
+.kpi-label {
+  @apply text-xs text-slate-500 font-medium;
+}
+
+.kpi-value {
+  @apply text-2xl md:text-3xl font-bold text-slate-900 mt-1;
+}
+
+.kpi-delta {
+  @apply text-xs font-medium mt-1 flex items-center gap-1;
+}
+
+.kpi-delta.up { @apply text-emerald-600; }
+.kpi-delta.down { @apply text-rose-600; }
+.kpi-delta.flat { @apply text-slate-500; }
+
+.pill {
+  @apply inline-block px-2 py-0.5 rounded text-xs font-medium;
+}
+.pill-wtf { @apply bg-amber-100 text-amber-700; }
+.pill-list { @apply bg-blue-100 text-blue-700; }
+.pill-hook { @apply bg-rose-100 text-rose-700; }
+.pill-x { @apply bg-slate-900 text-white; }
+.pill-xhs { @apply bg-rose-500 text-white; }
+
+.chart-wrap {
+  position: relative;
+  height: 240px;
+}
+
+.post-row {
+  @apply py-2 border-b border-slate-100 last:border-0 flex items-start gap-2 flex-wrap;
+}
+.post-title {
+  @apply font-medium text-slate-800 flex-1 min-w-[140px];
+}
+.post-stat {
+  @apply text-xs text-slate-500;
+}
+
+#posts-table th {
+  @apply text-left text-xs text-slate-500 font-medium border-b border-slate-200 py-2 px-2;
+}
+#posts-table td {
+  @apply py-2 px-2 border-b border-slate-100;
+}
+#posts-table tr:hover { @apply bg-slate-50; }
+
+.alert {
+  @apply text-sm p-3 rounded-lg;
+}
+.alert-info { @apply bg-blue-50 text-blue-800; }
+.alert-warn { @apply bg-amber-50 text-amber-800; }
+.alert-ok   { @apply bg-emerald-50 text-emerald-800; }

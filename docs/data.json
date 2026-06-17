@@ -1,0 +1,69 @@
+{
+  "meta": {
+    "updated_at": "2026-06-16 22:00",
+    "note": "你每天编这一个文件 → push → 看板自动更新。详见 README。"
+  },
+
+  "daily": [
+    {
+      "date": "2026-06-16",
+      "x_followers": 20,
+      "xhs_followers": 0,
+      "x_impressions": 1500,
+      "xhs_impressions": 0,
+      "posts_today": 1,
+      "log": "TOP2 蠢生意首发，初始账号 20 粉"
+    }
+  ],
+
+  "posts": [
+    {
+      "id": "20260616-top2-x",
+      "title": "1万人花$5买啥都没有 · Cards Against Humanity",
+      "platform": "X",
+      "pillar": "WTF",
+      "niche": "极限荒诞",
+      "published_at": "2026-06-16T21:00:00+08:00",
+      "url": "https://x.com/你的账号/status/请替换",
+      "metrics": {
+        "imp_24h": null,
+        "imp_7d": null,
+        "likes": null,
+        "reposts": null,
+        "replies": null,
+        "saves": null,
+        "profile_clicks": null,
+        "follower_gain": null
+      },
+      "rating": null,
+      "notes": ""
+    }
+  ],
+
+  "pipeline": [
+    {
+      "id": "20260621-top3",
+      "title": "5个蠢生意，最少赚$8K（清单体）",
+      "platform": "X",
+      "pillar": "LIST",
+      "niche": "蠢生意",
+      "status": "待发",
+      "priority": "高",
+      "plan_date": "2026-06-21T20:00:00+08:00",
+      "source_url": "https://en.wikipedia.org/wiki/The_Million_Dollar_Homepage",
+      "key_numbers": "5案例 · $1 / $999 / $20K / $71K / 10亿点击",
+      "twist": "蠢的不是设计者，是产品；卖的不是产品，是情绪",
+      "draft_path": "ready-to-post/2026-06-16-top3-five-stupid-sites.md"
+    },
+    {
+      "id": "20260622-top3-xhs",
+      "title": "5个蠢生意 · 小红书图文",
+      "platform": "小红书",
+      "pillar": "LIST",
+      "status": "待发",
+      "priority": "高",
+      "plan_date": "2026-06-22T19:00:00+08:00",
+      "draft_path": "ready-to-post/2026-06-16-top3-xiaohongshu.md"
+    }
+  ]
+}
