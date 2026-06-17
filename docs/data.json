@@ -1,7 +1,7 @@
 {
   "meta": {
     "updated_at": "2026-06-17 22:00",
-    "note": "你每天编这一个文件 → push → 看板自动更新。详见 README。"
+    "note": "每次编辑必改 updated_at · TOP 2 数字记得回 X analytics 核对"
   },
 
   "daily": [
@@ -13,6 +13,15 @@
       "xhs_impressions": 0,
       "posts_today": 1,
       "log": "TOP2 蠢生意首发，初始账号 20 粉"
+    },
+    {
+      "date": "2026-06-17",
+      "x_followers": 25,
+      "xhs_followers": 0,
+      "x_impressions": 320,
+      "xhs_impressions": 0,
+      "posts_today": 0,
+      "log": "TOP2 24h 数据回流，互动率约 2.4%"
     }
   ],
 
@@ -33,10 +42,10 @@
         "replies": 1,
         "saves": 0,
         "profile_clicks": 0,
-        "follower_gain": 46
+        "follower_gain": 26
       },
-      "rating": 哑火,
-      "notes": ""
+      "rating": "中规中矩",
+      "notes": "数字钩较强但反转不够爽；下次把最骚的一步放第 3 条而不是第 5 条"
     }
   ],
 
@@ -66,18 +75,18 @@
       "draft_path": "ready-to-post/2026-06-16-top3-xiaohongshu.md"
     },
     {
-  "id": "20260625-newpost",
-  "title": "你的新选题标题",
-  "platform": "X",
-  "pillar": "WTF",
-  "niche": "蠢生意",
-  "status": "待发",
-  "priority": "高",
-  "plan_date": "2026-06-25T20:00:00+08:00",
-  "source_url": "https://example.com",
-  "key_numbers": "$ XXX · X 天 · XXX 粉",
-  "twist": "这条最骚的一步是什么",
-  "draft_path": "ready-to-post/2026-06-25-new.md"
-  }
+      "id": "20260624-top1-glitter",
+      "title": "给仇人寄亮粉，6天赚20万 · Ship Your Enemies Glitter",
+      "platform": "X",
+      "pillar": "WTF",
+      "niche": "蠢生意",
+      "status": "待发",
+      "priority": "高",
+      "plan_date": "2026-06-24T21:00:00+08:00",
+      "source_url": "https://techcrunch.com/2015/01/14/ship-your-enemies-glitter/",
+      "key_numbers": "22岁澳洲人 · 6天$20K · 1周后$85K卖站",
+      "twist": "爆单后跑Reddit求大家别再下单",
+      "draft_path": "ready-to-post/待写"
+    }
   ]
 }
