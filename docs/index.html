@@ -6,12 +6,13 @@
   <title>X-GROWTH · 作战指挥中心</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 <div class="bg-grid"></div>
+<div class="scan-line"></div>
 <main class="container">
 
   <!-- HEADER -->
@@ -32,22 +33,26 @@
     <div class="header-right">
       <div class="day-counter">
         <div class="day-label">MISSION DAY</div>
-        <div class="day-value"><span id="day-current">0</span><span class="day-total">/90</span></div>
+        <div class="day-value"><span id="day-current">00</span><span class="day-total">/90</span></div>
       </div>
       <a id="edit-link" href="#" target="_blank" class="btn-edit">✏️ EDIT DATA</a>
     </div>
   </header>
 
-  <!-- TIER 1: NORTH STAR -->
+  <!-- TIER 1 -->
   <section class="tier">
-    <div class="tier-label">⊙ TIER 1 · 北极星</div>
+    <div class="tier-label">
+      <span class="tier-status" id="status-1"></span>
+      <span>⊙ TIER 1 · 北极星</span>
+      <span class="tier-status-text" id="status-1-text"></span>
+    </div>
     <div class="grid grid-cols-3 ns-grid">
       <div class="card card-north-star">
         <div class="card-eyebrow">TOTAL FOLLOWERS</div>
-        <div class="card-value-xl"><span id="ns-followers">0</span></div>
-        <div class="card-sub">目标 8,000 · 第一阶段</div>
+        <div class="hero-number" id="ns-followers" data-target="0">0</div>
+        <div class="card-sub">目标 8,000 · 第一阶段（90 天）</div>
         <div class="progress-bar"><div id="ns-progress" class="progress-fill"></div></div>
-        <div class="card-foot"><span id="ns-pct">0%</span> · 还差 <span id="ns-remaining">8,000</span></div>
+        <div class="card-foot"><span id="ns-pct">0.00%</span> · 还差 <span id="ns-remaining">8,000</span></div>
       </div>
       <div class="card card-mission">
         <div class="card-eyebrow">TODAY'S MISSION</div>
@@ -66,9 +71,13 @@
     </div>
   </section>
 
-  <!-- TIER 2: GROWTH VELOCITY -->
+  <!-- TIER 2 -->
   <section class="tier">
-    <div class="tier-label">◇ TIER 2 · 增长力</div>
+    <div class="tier-label">
+      <span class="tier-status" id="status-2"></span>
+      <span>◇ TIER 2 · 增长力</span>
+      <span class="tier-status-text" id="status-2-text"></span>
+    </div>
     <div class="grid grid-cols-4">
       <div class="kpi" id="kpi-x"></div>
       <div class="kpi" id="kpi-xhs"></div>
@@ -77,15 +86,23 @@
     </div>
   </section>
 
-  <!-- TIER 3: TIMELINE -->
+  <!-- TIER 3 -->
   <section class="tier">
-    <div class="tier-label">◇ TIER 3 · 作战时间线</div>
+    <div class="tier-label">
+      <span class="tier-status" id="status-3"></span>
+      <span>◇ TIER 3 · 作战时间线</span>
+      <span class="tier-status-text" id="status-3-text"></span>
+    </div>
     <div class="card timeline" id="timeline"></div>
   </section>
 
-  <!-- TIER 4: ANALYTICS -->
+  <!-- TIER 4 -->
   <section class="tier">
-    <div class="tier-label">◇ TIER 4 · 趋势分析</div>
+    <div class="tier-label">
+      <span class="tier-status" id="status-4"></span>
+      <span>◇ TIER 4 · 趋势分析</span>
+      <span class="tier-status-text" id="status-4-text"></span>
+    </div>
     <div class="grid grid-cols-3">
       <div class="card chart-card lg-col-2">
         <h3 class="chart-title">📈 粉丝增长 · 30D</h3>
@@ -108,9 +125,13 @@
     </div>
   </section>
 
-  <!-- TIER 5: DETAILS -->
+  <!-- TIER 5 -->
   <section class="tier">
-    <div class="tier-label">◇ TIER 5 · 操作明细</div>
+    <div class="tier-label">
+      <span class="tier-status" id="status-5"></span>
+      <span>◇ TIER 5 · 操作明细</span>
+      <span class="tier-status-text" id="status-5-text"></span>
+    </div>
     <div class="grid grid-cols-2">
       <div class="card">
         <h3 class="chart-title">🔥 战绩榜 TOP 5</h3>
@@ -128,7 +149,7 @@
   </section>
 
   <footer class="footer">
-    X-GROWTH COMMAND CENTER · v2 · 数据源 docs/data.json · 每晚 22:00 ·
+    X-GROWTH COMMAND CENTER · v3 · 数据源 docs/data.json · 每晚 22:00 ·
     <a href="https://github.com/chiang126126/x-growth" target="_blank">GITHUB</a>
   </footer>
 </main>

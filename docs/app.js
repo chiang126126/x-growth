@@ -1,4 +1,5 @@
-// X-GROWTH 作战指挥中心 · v2 · 渲染逻辑
+// X-GROWTH 作战指挥中心 · v3
+// 新增：暴力字号 / 数字滚动动画 / Tier 状态灯
 
 const REPO_EDIT_URL = "https://github.com/chiang126126/x-growth/edit/main/docs/data.json";
 const FOLLOWER_TARGET = 8000;
@@ -32,14 +33,17 @@ function render(data) {
   const dayN = Math.max(1, Math.floor((new Date(today) - new Date(startDate)) / 86400000) + 1);
 
   document.getElementById("updated-at").textContent = data.meta?.updated_at || "--";
-  document.getElementById("day-current").textContent = String(dayN).padStart(2, "0");
+  // Day counter 也滚动
+  animateNumber(document.getElementById("day-current"), dayN, 800, n => String(n).padStart(2, "0"));
 
-  // ── TIER 1 ──────────────────────────────────────
-  document.getElementById("ns-followers").textContent = fmt(totalFollowers);
+  // ── TIER 1 · 暴力核心数字滚动 ──────────────────────
+  animateNumber(document.getElementById("ns-followers"), totalFollowers, 1800, fmt);
   const pct = (totalFollowers / FOLLOWER_TARGET) * 100;
-  document.getElementById("ns-progress").style.width = Math.min(pct, 100) + "%";
-  document.getElementById("ns-pct").textContent = pct.toFixed(2) + "%";
-  document.getElementById("ns-remaining").textContent = fmt(Math.max(0, FOLLOWER_TARGET - totalFollowers));
+  setTimeout(() => {
+    document.getElementById("ns-progress").style.width = Math.min(pct, 100) + "%";
+  }, 200);
+  animateNumber(document.getElementById("ns-pct"), pct, 1500, n => n.toFixed(2) + "%");
+  animateNumber(document.getElementById("ns-remaining"), Math.max(0, FOLLOWER_TARGET - totalFollowers), 1500, fmt);
 
   renderMission(data, today);
   renderTempo(data, today);
@@ -56,6 +60,90 @@ function render(data) {
   // ── TIER 5 ──────────────────────────────────────
   renderTopFlop(data);
   renderPostsTable(data);
+
+  // ── 各 Tier 状态评估 ─────────────────────────────
+  evaluateAllStatus(data, totalFollowers);
+}
+
+// ── 数字滚动动画 ─────────────────────────────────────────
+function animateNumber(el, target, duration, formatter) {
+  if (!el) return;
+  formatter = formatter || (n => String(Math.round(n)));
+  const start = 0;
+  const startTime = performance.now();
+  function tick(now) {
+    const elapsed = now - startTime;
+    const t = Math.min(elapsed / duration, 1);
+    // easeOutExpo for snappy stock-ticker feel
+    const eased = t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+    const value = start + (target - start) * eased;
+    el.textContent = formatter(value);
+    if (t < 1) requestAnimationFrame(tick);
+    else el.textContent = formatter(target); // exact final
+  }
+  requestAnimationFrame(tick);
+}
+
+// ── Tier 状态评估 ────────────────────────────────────────
+function evaluateAllStatus(data, totalFollowers) {
+  // Tier 1: 北极星进度
+  const pct = (totalFollowers / FOLLOWER_TARGET) * 100;
+  if (totalFollowers >= FOLLOWER_TARGET * 0.05) setStatus(1, "ok", "ON TRACK");
+  else if (totalFollowers > 0) setStatus(1, "warn", "WARMING UP");
+  else setStatus(1, "crit", "NO DATA");
+
+  // Tier 2: 7 日粉丝 delta
+  const last = data.daily[data.daily.length - 1] || {};
+  const prev = data.daily[data.daily.length - 8] || {};
+  const lastTotal = (last.x_followers || 0) + (last.xhs_followers || 0);
+  const prevTotal = (prev.x_followers || 0) + (prev.xhs_followers || 0);
+  const delta = lastTotal - prevTotal;
+  if (data.daily.length < 2) setStatus(2, "warn", "NEED MORE DATA");
+  else if (delta > 0) setStatus(2, "ok", `+${delta} / 7D`);
+  else if (delta === 0) setStatus(2, "warn", "FLAT 7D");
+  else setStatus(2, "crit", `${delta} / 7D`);
+
+  // Tier 3: 未来 7 天有无排期
+  const today = new Date().toISOString().slice(0, 10);
+  const wk = new Date(); wk.setDate(wk.getDate() + 7);
+  const wkStr = wk.toISOString().slice(0, 10);
+  const planned = data.pipeline.filter(p => {
+    const d = (p.plan_date || "").slice(0, 10);
+    return d >= today && d <= wkStr;
+  });
+  const within48h = planned.some(p => {
+    const diff = (new Date(p.plan_date) - Date.now()) / 3600000;
+    return diff >= 0 && diff <= 48;
+  });
+  if (within48h) setStatus(3, "ok", "ON QUEUE");
+  else if (planned.length > 0) setStatus(3, "warn", `${planned.length} 条 7D 内`);
+  else setStatus(3, "crit", "NO QUEUE");
+
+  // Tier 4: 互动率趋势
+  const recent = data.posts.filter(p => p.metrics?.imp_24h > 0).slice(-10);
+  if (!recent.length) setStatus(4, "warn", "AWAITING METRICS");
+  else {
+    const avgEng = recent.reduce((s, p) => s + engagement(p), 0) / recent.length;
+    if (avgEng >= 3) setStatus(4, "ok", `ENG ${avgEng.toFixed(1)}%`);
+    else if (avgEng >= 1) setStatus(4, "warn", `ENG ${avgEng.toFixed(1)}%`);
+    else setStatus(4, "crit", `ENG ${avgEng.toFixed(1)}%`);
+  }
+
+  // Tier 5: 数据样本量
+  const n = data.posts.length;
+  if (n >= 10) setStatus(5, "ok", `${n} POSTS`);
+  else if (n >= 1) setStatus(5, "warn", `${n} POSTS`);
+  else setStatus(5, "crit", "0 POSTS");
+}
+
+function setStatus(tier, level, text) {
+  const dot = document.getElementById(`status-${tier}`);
+  const txt = document.getElementById(`status-${tier}-text`);
+  const icon = level === "ok" ? "✓" : level === "warn" ? "⚠" : "✗";
+  dot.className = `tier-status ${level}`;
+  dot.textContent = icon;
+  txt.className = `tier-status-text ${level}`;
+  txt.textContent = text;
 }
 
 // ── TIER 1 · Mission ──────────────────────────────────────
@@ -81,14 +169,13 @@ function renderMission(data, today) {
     items.push(missionItem("⏰", `<strong>${needData.length}</strong> 条已过 24h，去填 imp_24h`));
   }
   if (!todaySnap) {
-    items.push(missionItem("📊", `22:00 加 daily 快照（粉丝/曝光）`));
+    items.push(missionItem("📊", `22:00 加 daily 快照`));
   } else {
-    items.push(missionItem("📈", `已填快照 — X +${last7Delta(data.daily, "x_followers")} 粉 / 7日`));
+    items.push(missionItem("📈", `已填快照 — 7日 +${last7Delta(data.daily, "x_followers")} X`));
   }
   if (!todayPlan.length && !todayPosted.length) {
     items.push(missionItem("⚠️", `今日空档 — 去 pipeline 加排期`));
   }
-
   el.innerHTML = items.join("");
 }
 
@@ -126,9 +213,8 @@ function renderTempo(data, today) {
     return `<div class="${cls}" title="${ds}">${lbl}</div>`;
   }).join("");
   document.getElementById("tempo-week").innerHTML = html;
-  document.getElementById("week-posts").textContent = weekPostCount;
+  animateNumber(document.getElementById("week-posts"), weekPostCount, 600);
 
-  // streak: 从今天往前数连续发布的天数
   let streak = 0;
   const sortedDates = data.daily.slice().sort((a, b) => b.date.localeCompare(a.date));
   for (const d of sortedDates) {
@@ -136,7 +222,7 @@ function renderTempo(data, today) {
     if (posted) streak++;
     else break;
   }
-  document.getElementById("streak").textContent = streak;
+  animateNumber(document.getElementById("streak"), streak, 800);
 }
 
 // ── TIER 2 · KPI ──────────────────────────────────────
@@ -147,36 +233,41 @@ function renderKPIs(data) {
   const last14XHS = data.daily.slice(-14).map(d => d.xhs_followers || 0);
   const last14Imp = data.daily.slice(-14).map(d => (d.x_impressions || 0) + (d.xhs_impressions || 0));
 
-  setKPI("kpi-x", "X FOLLOWERS", last.x_followers, deltaStr(last.x_followers, prev.x_followers), last14X, "#ffffff");
-  setKPI("kpi-xhs", "XHS FOLLOWERS", last.xhs_followers, deltaStr(last.xhs_followers, prev.xhs_followers), last14XHS, "#FE2C55");
+  setKPI("kpi-x", "X FOLLOWERS", last.x_followers || 0, deltaStr(last.x_followers, prev.x_followers), last14X, "#ffffff");
+  setKPI("kpi-xhs", "XHS FOLLOWERS", last.xhs_followers || 0, deltaStr(last.xhs_followers, prev.xhs_followers), last14XHS, "#FE2C55");
 
   const recent = data.posts.filter(p => p.metrics?.imp_24h > 0).slice(-10);
   const avgEng = recent.length ? recent.reduce((s, p) => s + engagement(p), 0) / recent.length : 0;
   const engCls = avgEng >= 5 ? "up" : avgEng >= 3 ? "flat" : avgEng > 0 ? "down" : "flat";
   const engNote = avgEng >= 5 ? "↑ 优秀 ≥5%" : avgEng >= 3 ? "· 良好 ≥3%" : avgEng > 0 ? "↓ 待提升" : "无数据";
-  setKPIRaw("kpi-eng", "ENGAGEMENT RATE", avgEng ? avgEng.toFixed(2) + "%" : "—", engNote, engCls);
+  setKPIPercent("kpi-eng", "ENGAGEMENT RATE", avgEng, engNote, engCls);
 
-  const totalImp = last14Imp.reduce((s, n) => s + n, 0) * (30 / Math.max(1, last14Imp.length));
-  setKPI("kpi-imp", "30D IMPRESSIONS", fmt(totalImp), "30日预估", last14Imp, "#6366f1", "flat");
+  const total14 = last14Imp.reduce((s, n) => s + n, 0);
+  const proj30 = last14Imp.length ? (total14 * 30 / last14Imp.length) : 0;
+  setKPI("kpi-imp", "30D IMPRESSIONS", proj30, "30日预估", last14Imp, "#6366f1", "flat");
 }
 
-function setKPI(id, label, value, delta, sparkData, color, forceCls) {
+function setKPI(id, label, target, delta, sparkData, color, forceCls) {
   const cls = forceCls || (typeof delta === "string" && delta.includes("↑") ? "up" : delta && delta.includes("↓") ? "down" : "flat");
-  document.getElementById(id).innerHTML = `
+  const el = document.getElementById(id);
+  el.innerHTML = `
     <div class="kpi-label">${label}</div>
-    <div class="kpi-value">${value ?? "—"}</div>
+    <div class="kpi-value" id="${id}-num">0</div>
     <div class="kpi-delta ${cls}">${delta || "—"}</div>
     <canvas class="kpi-spark" id="${id}-spark"></canvas>`;
+  animateNumber(document.getElementById(`${id}-num`), target || 0, 1500, fmt);
   if (sparkData && sparkData.length > 1) {
-    setTimeout(() => drawSpark(`${id}-spark`, sparkData, color), 0);
+    setTimeout(() => drawSpark(`${id}-spark`, sparkData, color), 100);
   }
 }
 
-function setKPIRaw(id, label, value, delta, cls) {
-  document.getElementById(id).innerHTML = `
+function setKPIPercent(id, label, value, delta, cls) {
+  const el = document.getElementById(id);
+  el.innerHTML = `
     <div class="kpi-label">${label}</div>
-    <div class="kpi-value">${value}</div>
+    <div class="kpi-value" id="${id}-num">0%</div>
     <div class="kpi-delta ${cls}">${delta}</div>`;
+  animateNumber(document.getElementById(`${id}-num`), value, 1500, n => (n || 0).toFixed(2) + "%");
 }
 
 function drawSpark(cid, data, color) {
@@ -186,10 +277,7 @@ function drawSpark(cid, data, color) {
     type: "line",
     data: {
       labels: data.map((_, i) => i),
-      datasets: [{
-        data, borderColor: color, backgroundColor: color + "20",
-        borderWidth: 2, pointRadius: 0, tension: 0.35, fill: true,
-      }],
+      datasets: [{ data, borderColor: color, backgroundColor: color + "30", borderWidth: 2, pointRadius: 0, tension: 0.35, fill: true }],
     },
     options: {
       responsive: false, maintainAspectRatio: false,
@@ -211,12 +299,10 @@ function renderTimeline(data, today) {
   const el = document.getElementById("timeline");
   const rows = [];
 
-  // 今日待发
   const todayPlan = data.pipeline.filter(p => (p.plan_date || "").startsWith(today))
     .sort((a, b) => a.plan_date.localeCompare(b.plan_date));
   todayPlan.forEach(p => rows.push(timelineRow("NOW", "tag-now", `T+0 · ${p.plan_date.slice(11, 16)}`, p)));
 
-  // 未来 5 条
   const future = data.pipeline.filter(p => (p.plan_date || "").slice(0, 10) > today)
     .sort((a, b) => a.plan_date.localeCompare(b.plan_date)).slice(0, 5);
   future.forEach(p => {
@@ -224,7 +310,6 @@ function renderTimeline(data, today) {
     rows.push(timelineRow("NEXT", "tag-next", `T+${days}d · ${p.plan_date.slice(11, 16)}`, p));
   });
 
-  // 最近 2 条已发
   const recent = data.posts.slice().sort((a, b) => (b.published_at || "").localeCompare(a.published_at || "")).slice(0, 2);
   recent.forEach(p => {
     const h = Math.round((Date.now() - new Date(p.published_at).getTime()) / 3600000);
@@ -286,7 +371,7 @@ function renderCharts(data) {
     data: {
       labels: last14.map(d => d.date.slice(5)),
       datasets: [
-        { label: "X", data: last14.map(d => d.x_impressions || 0), backgroundColor: "rgba(255,255,255,0.8)", borderRadius: 3 },
+        { label: "X", data: last14.map(d => d.x_impressions || 0), backgroundColor: "rgba(255,255,255,0.85)", borderRadius: 3 },
         { label: "小红书", data: last14.map(d => d.xhs_impressions || 0), backgroundColor: "#FE2C55", borderRadius: 3 },
       ],
     },
@@ -339,10 +424,8 @@ function renderTopFlop({ posts }) {
   const scored = posts.filter(p => p.metrics?.imp_24h > 0).map(p => ({ ...p, eng: engagement(p) }));
   const top = [...scored].sort((a, b) => b.eng - a.eng).slice(0, 5);
   const flop = [...scored].sort((a, b) => a.eng - b.eng).slice(0, 5);
-  document.getElementById("top-posts").innerHTML = top.length ? top.map(postRow).join("")
-    : `<div class="empty">发了几条 + 填了 imp_24h 后会出现</div>`;
-  document.getElementById("flop-posts").innerHTML = flop.length ? flop.map(postRow).join("")
-    : `<div class="empty">数据不足</div>`;
+  document.getElementById("top-posts").innerHTML = top.length ? top.map(postRow).join("") : `<div class="empty">发了几条 + 填了 imp_24h 后会出现</div>`;
+  document.getElementById("flop-posts").innerHTML = flop.length ? flop.map(postRow).join("") : `<div class="empty">数据不足</div>`;
 }
 
 function postRow(p) {
