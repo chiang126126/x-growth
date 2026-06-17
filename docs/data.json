@@ -1,6 +1,6 @@
 {
   "meta": {
-    "updated_at": "2026-06-16 22:00",
+    "updated_at": "2026-06-17 22:00",
     "note": "你每天编这一个文件 → push → 看板自动更新。详见 README。"
   },
 
@@ -24,18 +24,18 @@
       "pillar": "WTF",
       "niche": "极限荒诞",
       "published_at": "2026-06-16T21:00:00+08:00",
-      "url": "https://x.com/你的账号/status/请替换",
+      "url": "https://x.com/JC789CJ/status/2067170593745613059",
       "metrics": {
-        "imp_24h": null,
-        "imp_7d": null,
-        "likes": null,
-        "reposts": null,
-        "replies": null,
-        "saves": null,
-        "profile_clicks": null,
-        "follower_gain": null
+        "imp_24h": 28,
+        "imp_7d": 28,
+        "likes": 1,
+        "reposts": 0,
+        "replies": 1,
+        "saves": 0,
+        "profile_clicks": 0,
+        "follower_gain": 46
       },
-      "rating": null,
+      "rating": 哑火,
       "notes": ""
     }
   ],
