@@ -64,6 +64,20 @@
       "priority": "高",
       "plan_date": "2026-06-22T19:00:00+08:00",
       "draft_path": "ready-to-post/2026-06-16-top3-xiaohongshu.md"
-    }
+    },
+    {
+  "id": "20260625-newpost",
+  "title": "你的新选题标题",
+  "platform": "X",
+  "pillar": "WTF",
+  "niche": "蠢生意",
+  "status": "待发",
+  "priority": "高",
+  "plan_date": "2026-06-25T20:00:00+08:00",
+  "source_url": "https://example.com",
+  "key_numbers": "$ XXX · X 天 · XXX 粉",
+  "twist": "这条最骚的一步是什么",
+  "draft_path": "ready-to-post/2026-06-25-new.md"
+  }
   ]
 }
