@@ -363,8 +363,14 @@ function renderKPIs(data) {
   const last14XHS = data.daily.slice(-14).map(d => d.xhs_followers || 0);
   const last14Imp = data.daily.slice(-14).map(d => (d.x_impressions || 0) + (d.xhs_impressions || 0));
 
-  setKPI("kpi-x", "X FOLLOWERS", last.x_followers || 0, deltaStr(last.x_followers, prev.x_followers), last14X, "#ffffff");
-  setKPI("kpi-xhs", "XHS FOLLOWERS", last.xhs_followers || 0, deltaStr(last.xhs_followers, prev.xhs_followers), last14XHS, "#FE2C55");
+  // KPI delta: 优先 7 日对比，不够则回退到首日对比
+  const first = data.daily[0] || {};
+  const xDelta = data.daily.length >= 8 ? deltaStr(last.x_followers, prev.x_followers, "7日")
+                                        : deltaStr(last.x_followers, first.x_followers, `${data.daily.length}日`);
+  const xhsDelta = data.daily.length >= 8 ? deltaStr(last.xhs_followers, prev.xhs_followers, "7日")
+                                          : deltaStr(last.xhs_followers, first.xhs_followers, `${data.daily.length}日`);
+  setKPI("kpi-x", "X FOLLOWERS", last.x_followers || 0, xDelta, last14X, "#ffffff");
+  setKPI("kpi-xhs", "XHS FOLLOWERS", last.xhs_followers || 0, xhsDelta, last14XHS, "#FE2C55");
 
   const recent = data.posts.filter(p => p.metrics?.imp_24h > 0).slice(-10);
   const avgEng = recent.length ? recent.reduce((s, p) => s + engagement(p), 0) / recent.length : 0;
@@ -408,11 +414,12 @@ function drawSpark(cid, data, color) {
   });
 }
 
-function deltaStr(curr, prev) {
+function deltaStr(curr, prev, periodLabel) {
+  periodLabel = periodLabel || "7日";
   if (curr == null || prev == null) return "无对比";
   const diff = curr - prev;
-  if (diff === 0) return "· 持平 / 7日";
-  return `${diff > 0 ? "↑ +" : "↓ "}${Math.abs(diff)} · 7日`;
+  if (diff === 0) return `· 持平 / ${periodLabel}`;
+  return `${diff > 0 ? "↑ +" : "↓ "}${Math.abs(diff)} · ${periodLabel}`;
 }
 
 function renderTimeline(data, today) {
@@ -486,9 +493,17 @@ function chartOpts() {
 function renderTopFlop({ posts }) {
   const scored = posts.filter(p => p.metrics?.imp_24h > 0).map(p => ({ ...p, eng: engagement(p) }));
   const top = [...scored].sort((a, b) => b.eng - a.eng).slice(0, 5);
-  const flop = [...scored].sort((a, b) => a.eng - b.eng).slice(0, 5);
-  document.getElementById("top-posts").innerHTML = top.length ? top.map(postRow).join("") : `<div class="empty">发了几条 + 填了 imp_24h 后会出现</div>`;
-  document.getElementById("flop-posts").innerHTML = flop.length ? flop.map(postRow).join("") : `<div class="empty">数据不足</div>`;
+  // 哑火榜只在样本 ≥ 6 条时出现，且不和 TOP 重复
+  const topIds = new Set(top.map(p => p.id));
+  const flop = scored.length >= 6
+    ? [...scored].sort((a, b) => a.eng - b.eng).filter(p => !topIds.has(p.id)).slice(0, 5)
+    : [];
+  document.getElementById("top-posts").innerHTML = top.length
+    ? top.map(postRow).join("")
+    : `<div class="empty">发了几条 + 填了 imp_24h 后会出现</div>`;
+  document.getElementById("flop-posts").innerHTML = flop.length
+    ? flop.map(postRow).join("")
+    : `<div class="empty">需积累 6+ 条数据才能识别哑火趋势<br>当前 ${scored.length} / 6</div>`;
 }
 
 function postRow(p) {
