@@ -3,93 +3,135 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>X-Growth 运营看板</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>X-GROWTH · 作战指挥中心</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="bg-slate-50 text-slate-800 min-h-screen">
-<div class="max-w-7xl mx-auto p-4 md:p-6 space-y-5">
+<body>
+<div class="bg-grid"></div>
+<main class="container">
 
-  <!-- Header -->
-  <header class="flex items-center justify-between flex-wrap gap-3">
-    <div>
-      <h1 class="text-2xl md:text-3xl font-bold tracking-tight">🚀 X-Growth 运营看板</h1>
-      <p class="text-sm text-slate-500 mt-1" id="updated-at">载入中…</p>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-left">
+      <div class="logo">
+        <span class="logo-icon">▲</span>
+        <span class="logo-text">X-GROWTH</span>
+        <span class="logo-sub">作战指挥中心</span>
+      </div>
+      <div class="live-indicator">
+        <span class="pulse"></span>
+        <span>LIVE</span>
+        <span class="text-muted">·</span>
+        <span id="updated-at">--</span>
+      </div>
     </div>
-    <a id="edit-link" href="#" target="_blank"
-       class="text-sm px-3 py-1.5 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">
-      ✏️ 编辑数据
-    </a>
+    <div class="header-right">
+      <div class="day-counter">
+        <div class="day-label">MISSION DAY</div>
+        <div class="day-value"><span id="day-current">0</span><span class="day-total">/90</span></div>
+      </div>
+      <a id="edit-link" href="#" target="_blank" class="btn-edit">✏️ EDIT DATA</a>
+    </div>
   </header>
 
-  <!-- KPI Cards -->
-  <section class="grid grid-cols-2 lg:grid-cols-4 gap-3">
-    <div class="kpi-card" id="kpi-x"></div>
-    <div class="kpi-card" id="kpi-xhs"></div>
-    <div class="kpi-card" id="kpi-imp"></div>
-    <div class="kpi-card" id="kpi-eng"></div>
-  </section>
-
-  <!-- Today + Upcoming -->
-  <section class="grid lg:grid-cols-2 gap-4">
-    <div class="card">
-      <h2 class="card-title">🎯 今日动作</h2>
-      <div id="today-actions" class="space-y-2"></div>
-    </div>
-    <div class="card">
-      <h2 class="card-title">📅 未来 7 天</h2>
-      <div id="upcoming"></div>
-    </div>
-  </section>
-
-  <!-- Charts -->
-  <section class="grid lg:grid-cols-3 gap-4">
-    <div class="card lg:col-span-2">
-      <h2 class="card-title">📈 粉丝增长（30天）</h2>
-      <div class="chart-wrap"><canvas id="chart-followers"></canvas></div>
-    </div>
-    <div class="card">
-      <h2 class="card-title">🥧 内容柱配比</h2>
-      <div class="chart-wrap"><canvas id="chart-pillar"></canvas></div>
+  <!-- TIER 1: NORTH STAR -->
+  <section class="tier">
+    <div class="tier-label">⊙ TIER 1 · 北极星</div>
+    <div class="grid grid-cols-3 ns-grid">
+      <div class="card card-north-star">
+        <div class="card-eyebrow">TOTAL FOLLOWERS</div>
+        <div class="card-value-xl"><span id="ns-followers">0</span></div>
+        <div class="card-sub">目标 8,000 · 第一阶段</div>
+        <div class="progress-bar"><div id="ns-progress" class="progress-fill"></div></div>
+        <div class="card-foot"><span id="ns-pct">0%</span> · 还差 <span id="ns-remaining">8,000</span></div>
+      </div>
+      <div class="card card-mission">
+        <div class="card-eyebrow">TODAY'S MISSION</div>
+        <div id="today-mission" class="mission-list"></div>
+      </div>
+      <div class="card card-tempo">
+        <div class="card-eyebrow">WEEK RHYTHM</div>
+        <div class="tempo-week" id="tempo-week"></div>
+        <div class="tempo-legend">
+          <span><i class="dot dot-posted"></i>已发</span>
+          <span><i class="dot dot-planned"></i>已排</span>
+          <span><i class="dot dot-today"></i>今日</span>
+        </div>
+        <div class="card-foot">连发 <span id="streak">0</span> 天 · 本周 <span id="week-posts">0</span>/7</div>
+      </div>
     </div>
   </section>
 
-  <section class="grid lg:grid-cols-2 gap-4">
-    <div class="card">
-      <h2 class="card-title">📊 每日曝光（14天）</h2>
-      <div class="chart-wrap"><canvas id="chart-impressions"></canvas></div>
-    </div>
-    <div class="card">
-      <h2 class="card-title">⚡ 互动率走势</h2>
-      <div class="chart-wrap"><canvas id="chart-engagement"></canvas></div>
-    </div>
-  </section>
-
-  <!-- Top / Flop tables -->
-  <section class="grid lg:grid-cols-2 gap-4">
-    <div class="card">
-      <h2 class="card-title">🔥 近期 Top（按互动率）</h2>
-      <div id="top-posts" class="text-sm"></div>
-    </div>
-    <div class="card">
-      <h2 class="card-title">💩 近期哑火</h2>
-      <div id="flop-posts" class="text-sm"></div>
+  <!-- TIER 2: GROWTH VELOCITY -->
+  <section class="tier">
+    <div class="tier-label">◇ TIER 2 · 增长力</div>
+    <div class="grid grid-cols-4">
+      <div class="kpi" id="kpi-x"></div>
+      <div class="kpi" id="kpi-xhs"></div>
+      <div class="kpi" id="kpi-eng"></div>
+      <div class="kpi" id="kpi-imp"></div>
     </div>
   </section>
 
-  <!-- All posts table -->
-  <section class="card">
-    <h2 class="card-title">📋 已发布全表</h2>
-    <div class="overflow-x-auto">
-      <table class="w-full text-sm" id="posts-table"></table>
+  <!-- TIER 3: TIMELINE -->
+  <section class="tier">
+    <div class="tier-label">◇ TIER 3 · 作战时间线</div>
+    <div class="card timeline" id="timeline"></div>
+  </section>
+
+  <!-- TIER 4: ANALYTICS -->
+  <section class="tier">
+    <div class="tier-label">◇ TIER 4 · 趋势分析</div>
+    <div class="grid grid-cols-3">
+      <div class="card chart-card lg-col-2">
+        <h3 class="chart-title">📈 粉丝增长 · 30D</h3>
+        <div class="chart-wrap"><canvas id="chart-followers"></canvas></div>
+      </div>
+      <div class="card chart-card">
+        <h3 class="chart-title">🥧 内容柱配比</h3>
+        <div class="chart-wrap"><canvas id="chart-pillar"></canvas></div>
+      </div>
+    </div>
+    <div class="grid grid-cols-2 mt-3">
+      <div class="card chart-card">
+        <h3 class="chart-title">📊 每日曝光 · 14D</h3>
+        <div class="chart-wrap"><canvas id="chart-impressions"></canvas></div>
+      </div>
+      <div class="card chart-card">
+        <h3 class="chart-title">⚡ 互动率走势</h3>
+        <div class="chart-wrap"><canvas id="chart-engagement"></canvas></div>
+      </div>
     </div>
   </section>
 
-  <footer class="text-center text-xs text-slate-400 py-6">
-    Built for chiang126126 · 数据源：<code>docs/data.json</code> · 每晚 22:00 更新
+  <!-- TIER 5: DETAILS -->
+  <section class="tier">
+    <div class="tier-label">◇ TIER 5 · 操作明细</div>
+    <div class="grid grid-cols-2">
+      <div class="card">
+        <h3 class="chart-title">🔥 战绩榜 TOP 5</h3>
+        <div id="top-posts" class="post-list"></div>
+      </div>
+      <div class="card">
+        <h3 class="chart-title">💩 哑火榜 BOTTOM 5</h3>
+        <div id="flop-posts" class="post-list"></div>
+      </div>
+    </div>
+    <div class="card mt-3">
+      <h3 class="chart-title">📋 已发布全表</h3>
+      <div class="table-wrap"><table id="posts-table"></table></div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    X-GROWTH COMMAND CENTER · v2 · 数据源 docs/data.json · 每晚 22:00 ·
+    <a href="https://github.com/chiang126126/x-growth" target="_blank">GITHUB</a>
   </footer>
-</div>
+</main>
 <script src="app.js"></script>
 </body>
 </html>
