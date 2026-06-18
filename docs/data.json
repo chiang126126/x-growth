@@ -69,13 +69,9 @@
     "title": "Cards Against Humanity 小红书图文 · Nothing for $5",
     "platform": "小红书",
     "pillar": "WTF",
-    "niche": "极限荒诞",
     "status": "待发",
     "priority": "高",
     "plan_date": "2026-06-19T19:00:00+08:00",
-    "source_url": "https://www.businessinsider.com/cards-against-humanity-bullshit-5-2015-11",
-    "key_numbers": "11248人 · $71,145 · 全分员工",
-    "twist": "黑五反操作：不打折，关掉所有商品只留一个NOTHING按钮",
     "draft_path": "ready-to-post/2026-06-19-cah-xhs.md"
   },
   {
@@ -89,7 +85,7 @@
     "plan_date": "2026-06-20T20:00:00+08:00",
     "source_url": "https://en.wikipedia.org/wiki/IFart_Mobile",
     "key_numbers": "2008-12-11上线 · $0.99 · 单日113884下载 · 峰值$40K/天",
-    "twist": "被起诉时直接拍视频对镜头放屁回应，借诉讼又火一波",
+    "twist": "被起诉时直接拍视频对镜头放屁回应",
     "draft_path": "ready-to-post/2026-06-20-ifart-x.md"
   },
   {
@@ -97,13 +93,11 @@
     "title": "5个让你怀疑'这也能赚钱'的怪服务",
     "platform": "X",
     "pillar": "LIST",
-    "niche": "蠢生意",
     "status": "待发",
     "priority": "高",
     "plan_date": "2026-06-21T20:00:00+08:00",
-    "source_url": "https://www.cameo.com",
-    "key_numbers": "Cameo $1B估值 / Rent A Friend 60万用户 / Cuddlist $80h / Awkward $500K年营 / Santa 150万封",
-    "twist": "5 个案例的共同点：击中一个被主流忽视的情绪（炫耀/装合群/孤独/怀旧/仪式感）",
+    "key_numbers": "Cameo / Rent A Friend / Cuddlist / Awkward Photos / Santa Letter",
+    "twist": "5 个案例共同点：击中一个被主流忽视的情绪",
     "draft_path": "ready-to-post/2026-06-21-weird-services-list-x.md"
   },
   {
@@ -111,11 +105,9 @@
     "title": "Pet Rock 小红书图文",
     "platform": "小红书",
     "pillar": "WTF",
-    "niche": "蠢生意",
     "status": "待发",
     "priority": "中",
     "plan_date": "2026-06-22T19:00:00+08:00",
-    "key_numbers": "同 6/18 X版 · 1500万营收",
     "draft_path": "ready-to-post/2026-06-22-pet-rock-xhs.md"
   },
   {
@@ -128,8 +120,8 @@
     "priority": "高",
     "plan_date": "2026-06-23T21:00:00+08:00",
     "source_url": "https://techcrunch.com/2014/06/18/yo-just-yo-thats-the-whole-app/",
-    "key_numbers": "8小时开发 · 2014-04-01上线 · 2月达400万用户 · 估值$5-10M",
-    "twist": "以色列军方真的用它推导弹警报；2016关停时创始人说'蠢不等于无价值'",
+    "key_numbers": "8小时开发 · 2014-04-01上线 · 估值$5-10M",
+    "twist": "以色列军方真的用它推导弹警报",
     "draft_path": "ready-to-post/2026-06-23-yo-app-x.md"
   },
   {
@@ -137,12 +129,10 @@
     "title": "我扒了50个蠢生意，发现一个让我后背发凉的规律",
     "platform": "X",
     "pillar": "HOOK",
-    "niche": "情绪共鸣",
     "status": "待发",
     "priority": "高",
     "plan_date": "2026-06-24T21:00:00+08:00",
-    "key_numbers": "本周收官 · 不抛数字 · 走情绪 · 戳启动羞耻",
-    "twist": "结尾不喊关注、不要 CTA，让'今天'两个字留屏",
+    "twist": "结尾不喊关注，让'今天'两个字留屏",
     "draft_path": "ready-to-post/2026-06-24-hook-x.md"
   }
 ]
