@@ -1,10 +1,19 @@
 {
   "meta": {
-    "updated_at": "2026-06-17 22:00",
+    "updated_at": "2026-06-18 22:00",
     "note": "每次编辑必改 updated_at · TOP 2 数字记得回 X analytics 核对"
   },
 
   "daily": [
+        {
+      "date": "2026-06-18",
+      "x_followers": 113,
+      "xhs_followers": 0,
+      "x_impressions": 332,
+      "xhs_impressions": 0,
+      "posts_today": 1,
+      "log": "发了 Pet Rock，初始反响有"
+    },
     {
       "date": "2026-06-16",
       "x_followers": 20,
@@ -26,6 +35,27 @@
   ],
 
   "posts": [
+        {
+      "id": "20260618-petrock-x",
+      "title": "卖石头当宠物，6个月赚1500万 · Pet Rock",
+      "platform": "X",
+      "pillar": "WTF",
+      "niche": "蠢生意",
+      "published_at": "2026-06-18T21:00:00+08:00",
+      "url": "https://x.com/JC789CJ/status/2067645923254034728",
+      "metrics": {
+        "imp_24h": 332,
+        "imp_7d": 738,
+        "likes": 2,
+        "reposts": 0,
+        "replies": 6,
+        "saves": 0,
+        "profile_clicks": 2,
+        "follower_gain": 64
+      },
+      "rating": 3%,
+      "notes": ""
+    },
     {
       "id": "20260616-top2-x",
       "title": "1万人花$5买啥都没有 · Cards Against Humanity",
@@ -50,20 +80,6 @@
   ],
 
 "pipeline": [
-  {
-    "id": "20260618-petrock-x",
-    "title": "卖石头当宠物，6个月赚1500万 · Pet Rock",
-    "platform": "X",
-    "pillar": "WTF",
-    "niche": "蠢生意",
-    "status": "待发",
-    "priority": "高",
-    "plan_date": "2026-06-18T21:00:00+08:00",
-    "source_url": "https://www.nytimes.com/2015/04/01/business/gary-dahl-inventor-of-the-pet-rock-dies-at-78.html",
-    "key_numbers": "1975 · 150万只 · $3.95单价 · 营收$15M",
-    "twist": "圣诞季结束前主动停售，没做续作 → 高手知道何时下车",
-    "draft_path": "ready-to-post/2026-06-18-pet-rock-x.md"
-  },
   {
     "id": "20260619-cah-xhs",
     "title": "Cards Against Humanity 小红书图文 · Nothing for $5",
