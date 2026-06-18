@@ -132,6 +132,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   box-shadow: 0 0 20px rgba(168,85,247,0.35);
 }
 .cmd-btn-ai:hover { box-shadow: 0 0 30px rgba(168,85,247,0.6); color: white; transform: translateY(-1px); }
+.cmd-divider { width: 1px; height: 20px; background: var(--border); margin: 0 4px; }
 
 /* TIER */
 .tier { margin-bottom: 28px; }
@@ -269,6 +270,16 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .tag-next { background: rgba(99,102,241,0.12); color: var(--accent); border-color: rgba(99,102,241,0.4); }
 .tag-past { background: rgba(100,116,139,0.12); color: var(--text-muted); border-color: var(--border); }
 .timeline-title { font-size: 13px; font-weight: 500; color: var(--text-primary); }
+.timeline-title-link {
+  font-size: 13px; font-weight: 500; color: var(--text-primary);
+  text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+}
+.timeline-title-link:hover { color: var(--accent); }
+.timeline-title-link .link-hint {
+  font-size: 10px; opacity: 0.5;
+  transition: opacity 0.2s;
+}
+.timeline-title-link:hover .link-hint { opacity: 1; }
 .timeline-meta { font-size: 11px; color: var(--text-muted); margin-top: 4px; font-family: var(--font-mono); display: flex; gap: 6px; flex-wrap: wrap; }
 .timeline-right { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); white-space: nowrap; }
 

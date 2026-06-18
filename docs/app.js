@@ -2,6 +2,7 @@
 // 新增：AI 周复盘 prompt 生成 / 复制 / 打开 Claude / Toast 提示
 
 const REPO_EDIT_URL = "https://github.com/chiang126126/x-growth/edit/main/docs/data.json";
+const REPO_BLOB_BASE = "https://github.com/chiang126126/x-growth/blob/main/";
 const FOLLOWER_TARGET = 8000;
 const CLAUDE_URL = "https://claude.ai/new";
 
@@ -443,7 +444,16 @@ function renderTimeline(data, today) {
 }
 
 function timelineRow(tag, tagCls, stamp, item, right = "") {
-  return `<div class="timeline-row"><div class="timeline-stamp"><span class="tag ${tagCls}">${tag}</span>${stamp}</div><div><div class="timeline-title">${item.title}</div><div class="timeline-meta">${pillTag(item.platform)} ${pillarTag(item.pillar)}</div></div><div class="timeline-right">${right}</div></div>`;
+  // 标题可点击：若有 draft_path 跳草稿；若有 url（已发）跳推文；都没有就纯文字
+  let titleHtml;
+  if (item.draft_path) {
+    titleHtml = `<a href="${REPO_BLOB_BASE}${item.draft_path}" target="_blank" class="timeline-title-link">${item.title} <span class="link-hint">📄</span></a>`;
+  } else if (item.url) {
+    titleHtml = `<a href="${item.url}" target="_blank" class="timeline-title-link">${item.title} <span class="link-hint">↗</span></a>`;
+  } else {
+    titleHtml = `<span class="timeline-title">${item.title}</span>`;
+  }
+  return `<div class="timeline-row"><div class="timeline-stamp"><span class="tag ${tagCls}">${tag}</span>${stamp}</div><div>${titleHtml}<div class="timeline-meta">${pillTag(item.platform)} ${pillarTag(item.pillar)}</div></div><div class="timeline-right">${right}</div></div>`;
 }
 
 function renderCharts(data) {
