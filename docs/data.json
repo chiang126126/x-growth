@@ -81,75 +81,98 @@
 
 "pipeline": [
   {
-    "id": "20260619-cah-xhs",
-    "title": "Cards Against Humanity 小红书图文 · Nothing for $5",
-    "platform": "小红书",
-    "pillar": "WTF",
-    "status": "待发",
-    "priority": "高",
-    "plan_date": "2026-06-19T19:00:00+08:00",
-    "draft_path": "ready-to-post/2026-06-19-cah-xhs.md"
-  },
-  {
-    "id": "20260620-ifart-x",
-    "title": "让手机放屁，单日$40K · iFart Mobile",
+    "id": "20260619-rabbit-r1-x",
+    "title": "200美刀AI设备成2024最大笑话，但创始人套现$20M · Rabbit R1",
     "platform": "X",
     "pillar": "WTF",
     "niche": "蠢生意",
     "status": "待发",
     "priority": "高",
-    "plan_date": "2026-06-20T20:00:00+08:00",
-    "source_url": "https://en.wikipedia.org/wiki/IFart_Mobile",
-    "key_numbers": "2008-12-11上线 · $0.99 · 单日113884下载 · 峰值$40K/天",
-    "twist": "被起诉时直接拍视频对镜头放屁回应",
-    "draft_path": "ready-to-post/2026-06-20-ifart-x.md"
+    "plan_date": "2026-06-19T21:00:00+08:00",
+    "source_url": "https://www.theverge.com/24148033/rabbit-r1-review-ai-gadget",
+    "key_numbers": "2024-04 · $199 · 10万预订 · 营收$20M · MKBHD史上最烂",
+    "twist": "被骂反而赢——Rabbit Inc B轮估值$300M+，Jesse Lyu 套现",
+    "draft_path": "ready-to-post/2026-06-19-rabbit-r1-x.md"
   },
   {
-    "id": "20260621-weirdservices-list-x",
-    "title": "5个让你怀疑'这也能赚钱'的怪服务",
+    "id": "20260620-dubai-chocolate-xhs",
+    "title": "1块$20巧克力，让迪拜小店火遍全球 · Dubai Chocolate",
+    "platform": "小红书",
+    "pillar": "WTF",
+    "niche": "蠢生意",
+    "status": "待发",
+    "priority": "高",
+    "plan_date": "2026-06-20T19:00:00+08:00",
+    "source_url": "https://www.bbc.com/news/articles/c8jxv2x3xn0o",
+    "key_numbers": "Fix Dessert Chocolatier · 单条TikTok 9000万播放 · #DubaiChocolate 30亿views",
+    "twist": "独家供应商策略 · 仿品越多正版越值钱",
+    "draft_path": "ready-to-post/2026-06-20-dubai-chocolate-xhs.md"
+  },
+  {
+    "id": "20260621-ai-cases-list-x",
+    "title": "5个AI时代真离谱搞钱（2022-2024全verified）",
     "platform": "X",
     "pillar": "LIST",
     "status": "待发",
     "priority": "高",
     "plan_date": "2026-06-21T20:00:00+08:00",
-    "key_numbers": "Cameo / Rent A Friend / Cuddlist / Awkward Photos / Santa Letter",
-    "twist": "5 个案例共同点：击中一个被主流忽视的情绪",
-    "draft_path": "ready-to-post/2026-06-21-weird-services-list-x.md"
+    "key_numbers": "Lensa $30M / Etsy提示词月$20K / Replika $138M / Aragon $5M ARR / GPT Store",
+    "twist": "蠢生意 = 1个人 + 1套提示词 + 1个收款页",
+    "draft_path": "ready-to-post/2026-06-21-ai-cases-list-x.md"
   },
   {
-    "id": "20260622-petrock-xhs",
-    "title": "Pet Rock 小红书图文",
-    "platform": "小红书",
-    "pillar": "WTF",
-    "status": "待发",
-    "priority": "中",
-    "plan_date": "2026-06-22T19:00:00+08:00",
-    "draft_path": "ready-to-post/2026-06-22-pet-rock-xhs.md"
-  },
-  {
-    "id": "20260623-yoapp-x",
-    "title": "一个只能发'Yo'的App，估值$1000万 · Yo App",
+    "id": "20260622-humane-ai-pin-x",
+    "title": "$699戴胸前AI别针，9个月烧光$230M · Humane AI Pin",
     "platform": "X",
     "pillar": "WTF",
-    "niche": "极限荒诞",
+    "niche": "蠢生意",
+    "status": "待发",
+    "priority": "高",
+    "plan_date": "2026-06-22T20:00:00+08:00",
+    "source_url": "https://www.theverge.com/24126502/humane-ai-pin-review",
+    "key_numbers": "$699+$24/月 · $230M融资 · 退货>销量 · 2025-02被HP $116M收购",
+    "twist": "豪华团队+5年+$230M = 还是失败；变砖留给用户",
+    "draft_path": "ready-to-post/2026-06-22-humane-ai-pin-x.md"
+  },
+  {
+    "id": "20260623-friend-com-x",
+    "title": "22岁少年花180万买域名，卖$99 AI项链，全网骂照样爆 · Friend.com",
+    "platform": "X",
+    "pillar": "WTF",
+    "niche": "蠢生意",
     "status": "待发",
     "priority": "高",
     "plan_date": "2026-06-23T21:00:00+08:00",
-    "source_url": "https://techcrunch.com/2014/06/18/yo-just-yo-thats-the-whole-app/",
-    "key_numbers": "8小时开发 · 2014-04-01上线 · 估值$5-10M",
-    "twist": "以色列军方真的用它推导弹警报",
-    "draft_path": "ready-to-post/2026-06-23-yo-app-x.md"
+    "source_url": "https://www.wired.com/story/friend-ai-necklace-avi-schiffmann/",
+    "key_numbers": "Avi Schiffmann · $1.8M买friend.com · $99项链 · 全网嘲讽+$8.5M A轮",
+    "twist": "公开嘲讽=免费PR · 广告女主竟是创始人女友",
+    "draft_path": "ready-to-post/2026-06-23-friend-com-x.md"
   },
   {
-    "id": "20260624-hook-x",
-    "title": "我扒了50个蠢生意，发现一个让我后背发凉的规律",
+    "id": "20260624-stanley-quencher-xhs",
+    "title": "1913老厂+TikTok妈妈=$750M年营收 · Stanley Quencher",
+    "platform": "小红书",
+    "pillar": "WTF",
+    "niche": "蠢生意",
+    "status": "待发",
+    "priority": "高",
+    "plan_date": "2026-06-24T19:00:00+08:00",
+    "source_url": "https://www.cnbc.com/2024/01/stanley-cup-craze.html",
+    "key_numbers": "1913成立 · 2022 $73M → 2023 $750M (10x) · #StanleyCup 20亿播放",
+    "twist": "车祸杯子没破病毒视频 · CEO亲自送车 · 老厂放权TikTok 妈妈",
+    "draft_path": "ready-to-post/2026-06-24-stanley-quencher-xhs.md"
+  },
+  {
+    "id": "20260625-hook-ai-era-x",
+    "title": "AI不会让你失业，但你怕显蠢会 · 2024蠢生意时代精神",
     "platform": "X",
     "pillar": "HOOK",
     "status": "待发",
     "priority": "高",
-    "plan_date": "2026-06-24T21:00:00+08:00",
-    "twist": "结尾不喊关注，让'今天'两个字留屏",
-    "draft_path": "ready-to-post/2026-06-24-hook-x.md"
+    "plan_date": "2026-06-25T21:00:00+08:00",
+    "key_numbers": "本周收尾 · 基于5个2024案例的认知归纳",
+    "twist": "你的'显蠢焦虑'是你最大的成本 · 不是明天，是今天",
+    "draft_path": "ready-to-post/2026-06-25-hook-ai-era-x.md"
   }
 ]
 }
