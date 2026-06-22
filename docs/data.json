@@ -1,18 +1,36 @@
 {
   "meta": {
-    "updated_at": "2026-06-19 22:00",
+    "updated_at": "2026-06-22 11:00",
     "note": "每次编辑必改 updated_at · TOP 2 数字记得回 X analytics 核对"
   },
 
   "daily": [ 
-            {
-      "date": "2026-06-19",
-      "x_followers": 159,
-      "xhs_followers": 0,
-      "x_impressions": 970,
+        {
+      "date": "2026-06-21",
+      "x_followers": 196,
+      "xhs_followers": 20,
+      "x_impressions":87,
+      "xhs_impressions":0,
+      "posts_today": 1,
+      "log": "AI LIST 发了，看周一回流"
+    },
+    {
+      "date": "2026-06-21",
+      "x_followers": 177,
+      "xhs_followers": 20,
+      "x_impressions": 182,
       "xhs_impressions": 0,
       "posts_today": 1,
-      "log": "发了Rabbit R1，初始反响有"
+      "log": "Dubai 首发"
+    },
+    {
+      "date": "2026-06-19",
+      "x_followers":159,
+      "xhs_followers": 0,
+      "x_impressions": 760,
+      "xhs_impressions": 0,
+      "posts_today": 1,
+      "log": "Rabbit R1 首发，AI 硬件案例"
     },
         {
       "date": "2026-06-18",
@@ -44,7 +62,69 @@
   ],
 
   "posts": [
-        {
+    {
+      "id": "20260622-ai-cases-list-x",
+      "title": "5个AI时代真离谱搞钱（2022-2024全verified）",
+      "platform": "X",
+      "pillar": "LIST",
+      "published_at": "2026-06-21T20:00:00+08:00",
+      "url": "https://x.com/",
+      "metrics": {
+        "imp_24h": [填],
+        "imp_7d": null,
+        "likes": [填],
+        "reposts": [填],
+        "replies": [填],
+        "saves": null,
+        "profile_clicks": [填],
+        "follower_gain": [填]
+      },
+      "rating": "[填:爆款/中规中矩/哑火]",
+      "notes": ""
+    },
+    {
+      "id": "20260621-dubai-chocolate-xhs",
+      "title": "1块$20巧克力，让迪拜小店火遍全球 · Dubai Chocolate",
+      "platform": "X",
+      "pillar": "WTF",
+      "niche": "蠢生意",
+      "published_at": "2026-06-20T19:00:00+08:00",
+      "url": "https://x.com/JC789CJ/status/2068747907658850552",
+      "metrics": {
+        "imp_24h": 20,
+        "imp_7d": null,
+        "likes": 3,
+        "reposts": 0,
+        "replies": 5,
+        "saves": 0,
+        "profile_clicks": 1,
+        "follower_gain": 47
+      },
+      "rating": "3.3",
+      "notes": ""
+    },
+    {
+      "id": "20260619-rabbit-r1-x",
+      "title": "200美刀AI设备成2024最大笑话，但创始人套现$20M · Rabbit R1",
+      "platform": "X",
+      "pillar": "WTF",
+      "niche": "蠢生意",
+      "published_at": "2026-06-19T21:00:00+08:00",
+      "url": "https://x.com/JC789CJ/status/2068022240021516368",
+      "metrics": {
+        "imp_24h": 85,
+        "imp_7d": null,
+        "likes": 4,
+        "reposts": 0,
+        "replies": 7,
+        "saves": null,
+        "profile_clicks": 0,
+        "follower_gain": 56
+      },
+      "rating": "3.1",
+      "notes": ""
+    },
+    {
       "id": "20260618-petrock-x",
       "title": "卖石头当宠物，6个月赚1500万 · Pet Rock",
       "platform": "X",
@@ -89,46 +169,6 @@
   ],
 
 "pipeline": [
-  {
-    "id": "20260619-rabbit-r1-x",
-    "title": "200美刀AI设备成2024最大笑话，但创始人套现$20M · Rabbit R1",
-    "platform": "X",
-    "pillar": "WTF",
-    "niche": "蠢生意",
-    "status": "待发",
-    "priority": "高",
-    "plan_date": "2026-06-19T21:00:00+08:00",
-    "source_url": "https://www.theverge.com/24148033/rabbit-r1-review-ai-gadget",
-    "key_numbers": "2024-04 · $199 · 10万预订 · 营收$20M · MKBHD史上最烂",
-    "twist": "被骂反而赢——Rabbit Inc B轮估值$300M+，Jesse Lyu 套现",
-    "draft_path": "ready-to-post/2026-06-19-rabbit-r1-x.md"
-  },
-  {
-    "id": "20260620-dubai-chocolate-xhs",
-    "title": "1块$20巧克力，让迪拜小店火遍全球 · Dubai Chocolate",
-    "platform": "小红书",
-    "pillar": "WTF",
-    "niche": "蠢生意",
-    "status": "待发",
-    "priority": "高",
-    "plan_date": "2026-06-20T19:00:00+08:00",
-    "source_url": "https://www.bbc.com/news/articles/c8jxv2x3xn0o",
-    "key_numbers": "Fix Dessert Chocolatier · 单条TikTok 9000万播放 · #DubaiChocolate 30亿views",
-    "twist": "独家供应商策略 · 仿品越多正版越值钱",
-    "draft_path": "ready-to-post/2026-06-20-dubai-chocolate-xhs.md"
-  },
-  {
-    "id": "20260621-ai-cases-list-x",
-    "title": "5个AI时代真离谱搞钱（2022-2024全verified）",
-    "platform": "X",
-    "pillar": "LIST",
-    "status": "待发",
-    "priority": "高",
-    "plan_date": "2026-06-21T20:00:00+08:00",
-    "key_numbers": "Lensa $30M / Etsy提示词月$20K / Replika $138M / Aragon $5M ARR / GPT Store",
-    "twist": "蠢生意 = 1个人 + 1套提示词 + 1个收款页",
-    "draft_path": "ready-to-post/2026-06-21-ai-cases-list-x.md"
-  },
   {
     "id": "20260622-humane-ai-pin-x",
     "title": "$699戴胸前AI别针，9个月烧光$230M · Humane AI Pin",
