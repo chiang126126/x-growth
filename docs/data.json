@@ -63,26 +63,6 @@
 
   "posts": [
     {
-      "id": "20260622-ai-cases-list-x",
-      "title": "5个AI时代真离谱搞钱（2022-2024全verified）",
-      "platform": "X",
-      "pillar": "LIST",
-      "published_at": "2026-06-21T20:00:00+08:00",
-      "url": "https://x.com/",
-      "metrics": {
-        "imp_24h": [填],
-        "imp_7d": null,
-        "likes": [填],
-        "reposts": [填],
-        "replies": [填],
-        "saves": null,
-        "profile_clicks": [填],
-        "follower_gain": [填]
-      },
-      "rating": "[填:爆款/中规中矩/哑火]",
-      "notes": ""
-    },
-    {
       "id": "20260621-dubai-chocolate-xhs",
       "title": "1块$20巧克力，让迪拜小店火遍全球 · Dubai Chocolate",
       "platform": "X",
@@ -100,7 +80,7 @@
         "profile_clicks": 1,
         "follower_gain": 47
       },
-      "rating": "3.3",
+      "rating": "中规中矩",
       "notes": ""
     },
     {
@@ -121,7 +101,7 @@
         "profile_clicks": 0,
         "follower_gain": 56
       },
-      "rating": "3.1",
+      "rating": "中规中矩",
       "notes": ""
     },
     {
